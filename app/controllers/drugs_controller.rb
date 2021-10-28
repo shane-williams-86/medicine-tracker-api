@@ -6,7 +6,7 @@ class DrugsController < ApplicationController
       image_url: params[:image_url],
       frequency: params[:frequency],
       notes: params[:notes],
-      patient_id: params[:patient_id]
+      patient_id: params[:patient_id],
     )
     if drug.save
       render json: { message: "Drug Created!" }, status: :created
@@ -22,16 +22,15 @@ class DrugsController < ApplicationController
       image_url: params[:image_url],
       frequency: params[:frequency],
       notes: params[:notes],
-      patient_id: params[:patient_id]
-      drug.save
-      render json: drug.as_json
+      patient_id: params[:patient_id],
     )
+    drug.save
+    render json: drug.as_json
   end
 
   def destroy
     drug = Drug.find(params[:id])
     drug.destroy
-    render json: {message: "Drug Deleted!"}
+    render json: { message: "Drug Deleted!" }
   end
 end
-

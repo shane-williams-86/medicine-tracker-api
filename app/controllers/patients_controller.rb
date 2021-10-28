@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   def index
-    patients = Patient.all 
+    patients = Patient.all
     render json: patients
   end
 
@@ -9,10 +9,10 @@ class PatientsController < ApplicationController
       name: params[:name],
       user_id: params[:user_id],
       notes: params[:notes],
-      image_url: params[:image_url]
+      image_url: params[:image_url],
 
     )
-    if user.save
+    if patient.save
       render json: { message: "Patient Created!" }, status: :created
     else
       render json: { errors: patient.errors.full_messages }, status: :bad_request
@@ -25,9 +25,9 @@ class PatientsController < ApplicationController
       user_id: params[:user_id],
       notes: params[:notes],
       image_url: params[:image_url],
-      patient.save
-      render json: patient.as_json
-    end
+    )
+    patient.save
+    render json: patient.as_json
   end
 
   def show
@@ -38,6 +38,6 @@ class PatientsController < ApplicationController
   def destroy
     patient = patient.find(params[:id])
     patient.destroy
-    render json: {message: "Patient Deleted!"}
+    render json: { message: "Patient Deleted!" }
   end
 end
