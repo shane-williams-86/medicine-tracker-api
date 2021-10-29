@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   ### USERS
   post "/users" => "users#create"
-  get "/users/:id" => "users#show"
-  patch "/users/:id" => "users#update"
-  delete "/users/:id" => "users#destroy"
+  get "/users/me" => "users#show"
+  patch "/users/me" => "users#update"
+  delete "/users/me" => "users#destroy"
 
   ### LOGIN SESSIONS
   post "/sessions" => "sessions#create"
 
   ### PATIENTS
   get "/patients" => "patients#index"
-  post "/patient" => "patients#create"
+  post "/patients" => "patients#create"
   get "/patients/:id" => "patients#show"
   patch "/patients/:id" => "patients#update"
   delete "/patients/:id" => "patients#destroy"

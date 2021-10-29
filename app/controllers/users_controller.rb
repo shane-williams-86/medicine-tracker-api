@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user, except: [:index, :show]
+  before_action :authenticate_user, except: [:create]
 
   def create
     user = User.new(
-    name: params[:name],
-    email: params[:email],
-    password: params[:password],
-    password_confirmation: params[:password_confirmation],
-    phone_number: params[:phone_number],
-    image_url: params[:image_url],
+      name: params[:name],
+      email: params[:email],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation],
+      phone_number: params[:phone_number],
+      image_url: params[:image_url],
 
     )
     if user.save
@@ -19,11 +19,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
+    user = current_user
     user.name = params[:name] || user.name
     user.email = params[:email] || user.email
-    user.password = params[:password_confirmation] || user.password
-    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
     user.phone_number = params[:phone_number] || user.phone_number
     user.image_url = params[:image_url] || user.image_url
     if user.save
@@ -34,12 +32,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
+    user = current_user
     render json: user
   end
 
   def destroy
-    user = User.find(params[:id])
+    user = current_user
     user.destroy
     render json: { message: "User Deleted!" }
   end

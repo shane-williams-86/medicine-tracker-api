@@ -1,16 +1,15 @@
 class PatientsController < ApplicationController
+  before_action :authenticate_user
 
-  # before_action :authenticate_user, except: [:index, :show]
-  
   def index
-    patients = Patient.all
+    patients = current_user.patients
     render json: patients
   end
 
   def create
     patient = Patient.new(
       name: params[:name],
-      user_id: params[:user_id],
+      user_id: current_user.id,
       notes: params[:notes],
       image_url: params[:image_url],
 
@@ -25,7 +24,6 @@ class PatientsController < ApplicationController
   def update
     patient = Patient.find(params[:id])
     patient.name = params[:name] || patient.name
-    patient.user_id = params[:user_id] || patient.user_id
     patient.notes = params[:notes] || patient.notes
     patient.image_url = params[:image_url] || patient.image_url
     if patient.save

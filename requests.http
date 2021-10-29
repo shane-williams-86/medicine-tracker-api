@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MzU2MTQ0NjZ9.04MY5a72fO_EPfG3s00971P_nkFJ5g1BtnFPgukipv0
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2MzU2MjAyMDd9.63e67CMVNGXiUxewXZWK7ioe2TWslMze619B-FAi9Xo
 @localhost = http://localhost:3000/
 
 
@@ -7,77 +7,74 @@ POST {{localhost}}/users
 Content-Type: application/json
 
   {
-    "name": "Alice Gantman",
-    "email": "Alice@test.com",
+    "name": "Teresa",
+    "email": "Teresa@test.com",
     "password": "password",
     "password_confirmation": "password"
   }
 
 ### USERS SHOW
-GET http://localhost:3000/users/1
+GET http://localhost:3000/users/me
+Authorization: Bearer {{ jwt }}
 Content-Type: application/json
 
 ### USER UPDATE
-PATCH http://localhost:3000/users/1
+PATCH http://localhost:3000/users/me
 Authorization: Bearer {{ jwt }}
 Content-Type: application/json
 
 {
-  "user_id": 1,
-  "name": "Ray",
-  "email": "ray@gmail.com",
-  "password": "",
-  "password_confirmation": "",
-  "phone_number": "",
-  "image_url": ""
+  
+  "name": "Sharon",
+  "email": "sharon@gmail.com"
+
 }
 
 ### USER DELETE
-DELETE {{localhost}}/users/1
+DELETE {{localhost}}/users/me
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 
-### Sessions create (login)
+### Sessions (login)
 POST {{localhost}}/sessions
 Content-Type: application/json
 
   {
-    "email": "ray@gmail.com",
+    "email": "Teresa@test.com",
     "password": "password"
   }
 
 
 ### PATIENT INDEX
 GET {{localhost}}/patients
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
 
 ### PATIENT SHOW
 
-GET http://localhost:3000/patients/1
+GET http://localhost:3000/patients/8
+Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 ### PATIENT CREATE
-POST {{localhost}}/patient
+POST {{localhost}}/patients
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "Norma Jean",
-  "user_id": 1 ,
-  "notes": "Norma is 74 and prefers apple juice with her meds",
+  "name": "Janice",
+  "notes": "Janice is 55 and prefers apple juice with her meds",
   "image_url": ""
 }
 
 ### PATIENT UPDATE
-PATCH {{localhost}}/patients/1
+PATCH {{localhost}}/patients/8
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "Jake Appleseed",
-  "user_id": 1,
-  "notes": "Jake likes a nice bath",
-  "image_url": ""
+  "image_url": "image.jpg"
 }
 
 ### DRUG CREATE
@@ -87,13 +84,13 @@ Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "BestMed",
-  "frequency": "Every 4 hours",
-  "patient_id": 3
+  "name": "Acid Reducer",
+  "frequency": "Every 8 hours",
+  "patient_id": 8
 }
 
 ### DRUG UPDATE
-PATCH http://localhost:3000/drugs/1
+PATCH http://localhost:3000/drugs/10
 Authorization: Bearer {{ jwt }}
 Content-Type: application/json
 
@@ -102,8 +99,7 @@ Content-Type: application/json
   "description": "Take for pain and inflammation",
   "image_url": "https://image.shutterstock.com/image-photo/laguna-woods-ca-usa-08022018-260nw-1148582864.jpg",
   "frequency": "every 4 hours as needed",
-  "notes": "Take with food",
-  "patient_id": 1
+  "notes": "Take with food"
 }
 
 ### DRUG DESTROY

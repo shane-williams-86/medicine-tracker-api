@@ -1,8 +1,6 @@
 class DrugsController < ApplicationController
+  before_action :authenticate_user
 
-  # before_action :authenticate_user, except: [:index, :show]
-  
-  
   def create
     drug = Drug.new(
       name: params[:name],
@@ -26,7 +24,6 @@ class DrugsController < ApplicationController
     drug.image_url = params[:image_url] || drug.image_url
     drug.frequency = params[:frequency] || drug.frequency
     drug.notes = params[:notes] || drug.notes
-    drug.patient_id = params[:patient_id] || drug.patient_id
     if drug.save
       render json: drug
     else
