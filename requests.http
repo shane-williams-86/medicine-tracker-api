@@ -1,10 +1,10 @@
-@jwt = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MzU1MTc5MDJ9.zu-gk_NcXY-8FPMLvOwpRGQuSGxGqEf69vy13hh0tu0"
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MzU2MTQ0NjZ9.04MY5a72fO_EPfG3s00971P_nkFJ5g1BtnFPgukipv0
 @localhost = http://localhost:3000/
 
 
 ### Users create (signup)
-  POST {{localhost}}/users
-  Content-Type: application/json
+POST {{localhost}}/users
+Content-Type: application/json
 
   {
     "name": "Alice Gantman",
@@ -32,24 +32,53 @@ Content-Type: application/json
   "image_url": ""
 }
 
+### USER DELETE
+DELETE {{localhost}}/users/1
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
 
 ### Sessions create (login)
-POST http://localhost:3000/sessions
+POST {{localhost}}/sessions
 Content-Type: application/json
 
   {
-    "email": "shanewilliams@gmail.com",
+    "email": "ray@gmail.com",
     "password": "password"
   }
 
 
-
+### PATIENT INDEX
+GET {{localhost}}/patients
 
 ### PATIENT SHOW
 
-GET http://localhost:3000/patients/2
+GET http://localhost:3000/patients/1
 Content-Type: application/json
 
+### PATIENT CREATE
+POST {{localhost}}/patient
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "Norma Jean",
+  "user_id": 1 ,
+  "notes": "Norma is 74 and prefers apple juice with her meds",
+  "image_url": ""
+}
+
+### PATIENT UPDATE
+PATCH {{localhost}}/patients/1
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "Jake Appleseed",
+  "user_id": 1,
+  "notes": "Jake likes a nice bath",
+  "image_url": ""
+}
 
 ### DRUG CREATE
 
@@ -58,7 +87,27 @@ Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "Trazadone",
+  "name": "BestMed",
   "frequency": "Every 4 hours",
-  "patient_id": 2
+  "patient_id": 3
 }
+
+### DRUG UPDATE
+PATCH http://localhost:3000/drugs/1
+Authorization: Bearer {{ jwt }}
+Content-Type: application/json
+
+{
+  "name": "Advil",
+  "description": "Take for pain and inflammation",
+  "image_url": "https://image.shutterstock.com/image-photo/laguna-woods-ca-usa-08022018-260nw-1148582864.jpg",
+  "frequency": "every 4 hours as needed",
+  "notes": "Take with food",
+  "patient_id": 1
+}
+
+### DRUG DESTROY
+
+DELETE {{localhost}}/drugs/9
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
