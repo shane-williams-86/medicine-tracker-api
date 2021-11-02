@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2MzU2MjAyMDd9.63e67CMVNGXiUxewXZWK7ioe2TWslMze619B-FAi9Xo
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MzU5NTg2MTd9.34G13p6lAsqtPmg7U-DbGSkVJeapHMR4L-Lov3U0SV0
 @localhost = http://localhost:3000/
 
 
@@ -25,8 +25,7 @@ Content-Type: application/json
 
 {
   
-  "name": "Sharon",
-  "email": "sharon@gmail.com"
+  "image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t1.6435-9/90748411_3678329148860672_4612086841955319808_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=V6ojMpEbOPoAX9lefzn&_nc_ht=scontent-lga3-1.xx&oh=4548093e6b5ca6006d0ac3a58492678b&oe=61A7BB64"
 
 }
 
@@ -41,7 +40,7 @@ POST {{localhost}}/sessions
 Content-Type: application/json
 
   {
-    "email": "Teresa@test.com",
+    "email": "eva@gmail.com",
     "password": "password"
   }
 
@@ -84,8 +83,8 @@ Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "Acid Reducer",
-  "frequency": "Every 8 hours",
+  "name": "Advil",
+  "frequency": "Every 4 hours",
   "patient_id": 8
 }
 

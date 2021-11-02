@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    patient = patient.find(params[:id])
+    patient = Patient.find(params[:id])
     patient.destroy
     render json: { message: "Patient Deleted!" }
   end
