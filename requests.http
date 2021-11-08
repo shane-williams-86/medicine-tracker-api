@@ -1,4 +1,4 @@
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MzU5NTg2MTd9.34G13p6lAsqtPmg7U-DbGSkVJeapHMR4L-Lov3U0SV0
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MzY0MDM0NTR9.5qAvXkkNkIIX_ksd25nCsX_xdJNRvk21yekUzYmMlMg
 @localhost = http://localhost:3000/
 
 
@@ -40,7 +40,7 @@ POST {{localhost}}/sessions
 Content-Type: application/json
 
   {
-    "email": "eva@gmail.com",
+    "email": "nuke@gmail.com",
     "password": "password"
   }
 
@@ -68,12 +68,12 @@ Content-Type: application/json
 }
 
 ### PATIENT UPDATE
-PATCH {{localhost}}/patients/8
+PATCH {{localhost}}/patients/2
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "image_url": "image.jpg"
+  "name": "Alice"
 }
 
 ### DRUG CREATE
